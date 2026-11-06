@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Excess Baggage Fee Calculator</string>
+
+    <string-array name="ticket_classes">
+        <item>Economy (20 kg limit)</item>
+        <item>Business (40 kg limit)</item>
+    </string-array>
+</resources>

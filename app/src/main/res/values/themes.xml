@@ -1,0 +1,11 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+<!-- Base application theme. -->
+<style name="Base.Theme.Individual_Assignment" parent="Theme.AppCompat.Light.DarkActionBar">
+    <!-- Customize your light theme here. -->
+    <item name="colorPrimary">#0D47A1</item>
+    <item name="colorPrimaryDark">#002171</item>
+    <item name="colorAccent">#80DEEA</item>
+</style>
+
+<style name="Theme.Individual_Assignment" parent="Base.Theme.Individual_Assignment" />
+</resources>

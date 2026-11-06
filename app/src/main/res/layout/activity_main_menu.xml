@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- Latar Belakang Warna Kebiruan (Sesuai jika gambar sky_bg tiada) -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/sky_bg" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:padding="24dp"
+        android:layout_margin="20dp"
+        android:background="#D9FFFFFF">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Excess Baggage Fee Calculator"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="#0D47A1"
+            android:gravity="center"
+            android:layout_marginBottom="32dp" />
+
+        <!-- Butang ke Calculator Page -->
+        <Button
+            android:id="@+id/btnGoCalculator"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Go to Calculator"
+            android:textSize="16sp"
+            app:backgroundTint="#0D47A1"
+            android:textColor="#FFFFFF"
+            android:padding="12dp"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Butang ke About Page -->
+        <Button
+            android:id="@+id/btnGoAbout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Go to About Page"
+            android:textSize="16sp"
+            app:backgroundTint="#5C6BC0"
+            android:textColor="#FFFFFF"
+            android:padding="12dp" />
+
+    </LinearLayout>
+
+</FrameLayout>
