@@ -1,6 +1,7 @@
 package com.example.individual_assignment;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -36,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
         tvExcessCharge = findViewById(R.id.tvExcessCharge);
         tvTotalPayable = findViewById(R.id.tvTotalPayable);
 
-        // Bind Butang Back to Main Menu dari activity_main.xml
+        // Bind Butang Back to Main Menu
         btnBackToMain = findViewById(R.id.btnBackToMain);
 
         // Setup Spinner Adapter secara manual
@@ -67,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
             btnBackToMain.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    finish(); // Menutup MainActivity dan kembali ke MainMenuActivity
+                    finish();
                 }
             });
         }
@@ -77,13 +78,17 @@ public class MainActivity extends AppCompatActivity {
         String weightStr = etBaggageWeight.getText().toString().trim();
         String rateStr = etRatePerKg.getText().toString().trim();
 
+        // Semakan 1: Jika input berat kosong (Instruction & Helpful Notice)
         if (weightStr.isEmpty()) {
             etBaggageWeight.setError("Please enter baggage weight!");
+            Toast.makeText(this, "Notice: Baggage weight is required!", Toast.LENGTH_SHORT).show();
             return;
         }
 
+        // Semakan 2: Jika input kadar kosong
         if (rateStr.isEmpty()) {
             etRatePerKg.setError("Please enter excess rate per kg!");
+            Toast.makeText(this, "Notice: Excess rate per kg is required!", Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -93,23 +98,35 @@ public class MainActivity extends AppCompatActivity {
         int selectedPosition = spinnerTicketClass.getSelectedItemPosition();
         double freeWeightAllowance = (selectedPosition == 0) ? 20.0 : 40.0;
 
-        double excessWeight = baggageWeight - freeWeightAllowance;
-        if (excessWeight < 0) {
-            excessWeight = 0;
+        // Semakan 3: Logik Had & Mesej Notice/Within Limit
+        if (baggageWeight <= freeWeightAllowance) {
+            // Jika dalam had yang dibenarkan (Within Limit)
+            tvExcessWeight.setTextColor(Color.parseColor("#2E7D32")); // Warna hijau
+            tvExcessWeight.setText(String.format(Locale.getDefault(), "Status: Within Limit (Max %.0f kg)", freeWeightAllowance));
+            tvExcessCharge.setText("Excess Baggage Charge: RM 0.00");
+            tvTotalPayable.setText("Total Amount Payable (Inc. 8% Tax): RM 0.00");
+
+            Toast.makeText(this, "Notice: Baggage is within limit. No extra fee!", Toast.LENGTH_LONG).show();
+        } else {
+            // Jika melebihi had (Excess Baggage)
+            double excessWeight = baggageWeight - freeWeightAllowance;
+            double excessCharge = excessWeight * ratePerKg;
+
+            // Perbaikan Formula Cukai (0.08 * excessCharge)
+            double totalPayable = excessCharge + (0.08 * excessCharge);
+
+            tvExcessWeight.setTextColor(Color.RED); // Warna merah
+            tvExcessWeight.setText(String.format(Locale.getDefault(), "Excess Baggage Weight: %.2f kg", excessWeight));
+            tvExcessCharge.setText(String.format(Locale.getDefault(), "Excess Baggage Charge: RM %.2f", excessCharge));
+            tvTotalPayable.setText(String.format(Locale.getDefault(), "Total Amount Payable (Inc. 8%% Tax): RM %.2f", totalPayable));
         }
-
-        double excessCharge = excessWeight * ratePerKg;
-        double totalPayable = excessCharge + (0.08 * excessCharge);
-
-        tvExcessWeight.setText(String.format(Locale.getDefault(), "Excess Baggage Weight: %.2f kg", excessWeight));
-        tvExcessCharge.setText(String.format(Locale.getDefault(), "Excess Baggage Charge: RM %.2f", excessCharge));
-        tvTotalPayable.setText(String.format(Locale.getDefault(), "Total Amount Payable (Inc. 8%% Tax): RM %.2f", totalPayable));
     }
 
     private void resetFields() {
         etBaggageWeight.setText("");
         etRatePerKg.setText("");
         spinnerTicketClass.setSelection(0);
+        tvExcessWeight.setTextColor(Color.BLACK);
         tvExcessWeight.setText("Excess Baggage Weight: 0 kg");
         tvExcessCharge.setText("Excess Baggage Charge: RM 0.00");
         tvTotalPayable.setText("Total Amount Payable (Inc. 8% Tax): RM 0.00");
@@ -129,7 +146,7 @@ public class MainActivity extends AppCompatActivity {
         if (id == R.id.action_share) {
             Intent shareIntent = new Intent(Intent.ACTION_SEND);
             shareIntent.setType("text/plain");
-            shareIntent.putExtra(Intent.EXTRA_TEXT, "Check out my Excess Baggage Fee Calculator app at: https://github.com/yourusername/namaprojek");
+            shareIntent.putExtra(Intent.EXTRA_TEXT, "Check out my Excess Baggage Fee Calculator app at: https://github.com/AisyaSofea30/ExcessBaggageCalculator");
             startActivity(Intent.createChooser(shareIntent, "Share via"));
             return true;
         } else if (id == R.id.action_about) {

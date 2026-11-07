@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F4F6F9"
+    android:background="#C9D0DB"
     android:fillViewport="true">
 
     <LinearLayout
@@ -13,29 +13,42 @@
         android:orientation="vertical"
         android:padding="20dp">
 
-        <!-- Input Card Container (Lutsinar 80% Putih) -->
+        <!-- Tajuk Utama (Warna Gelap & Jelas) -->
         <TextView
-            android:layout_width="381dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
             android:text="Baggage Fee Calculator"
-            android:textColor="#C5CAD5"
+            android:textColor="#B8C3CC"
             android:textSize="22sp"
             android:textStyle="bold" />
 
+        <!-- Input Card Container -->
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
-            app:cardBackgroundColor="#CCFFFFFF"
+            app:cardBackgroundColor="#F5FFFFFF"
             app:cardCornerRadius="16dp"
-            app:cardElevation="2dp">
+            app:cardElevation="4dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:padding="16dp">
+
+                <!-- Helpful Instruction Notice -->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="12dp"
+                    android:background="#E3F2FD"
+                    android:padding="8dp"
+                    android:text="Enter baggage details below to calculate excess baggage charge."
+                    android:textColor="#1565C0"
+                    android:textSize="12sp"
+                    android:textStyle="italic" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -109,23 +122,23 @@
                         android:layout_marginStart="6dp"
                         android:layout_weight="1"
                         android:text="CLEAR"
-                        android:textColor="#546E7A"
+                        android:textColor="#FFFFFF"
                         android:textStyle="bold"
-                        app:backgroundTint="#B0BEC5"
+                        app:backgroundTint="#78909C"
                         app:cornerRadius="8dp" />
                 </LinearLayout>
 
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
-        <!-- Result Card Container (Lutsinar Biru Muda) -->
+        <!-- Result Card Container -->
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
-            app:cardBackgroundColor="#CCE3F2FD"
+            app:cardBackgroundColor="#FFFFFF"
             app:cardCornerRadius="16dp"
-            app:cardElevation="2dp">
+            app:cardElevation="4dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -139,8 +152,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="6dp"
                     android:text="Excess Baggage Weight: 0.00 kg"
-                    android:textColor="#1E88E5"
-                    android:textSize="14sp" />
+                    android:textColor="#263238"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/tvExcessCharge"
@@ -148,14 +162,14 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
                     android:text="Excess Baggage Charge: RM 0.00"
-                    android:textColor="#1E88E5"
-                    android:textSize="14sp" />
+                    android:textColor="#37474F"
+                    android:textSize="15sp" />
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_marginBottom="8dp"
-                    android:background="#BBDEFB" />
+                    android:background="#CFD8DC" />
 
                 <TextView
                     android:id="@+id/tvTotalPayable"
@@ -163,7 +177,7 @@
                     android:layout_height="wrap_content"
                     android:text="Total Amount Payable (Inc. 8% Tax): RM 0.00"
                     android:textColor="#0D47A1"
-                    android:textSize="15sp"
+                    android:textSize="16sp"
                     android:textStyle="bold" />
 
             </LinearLayout>
