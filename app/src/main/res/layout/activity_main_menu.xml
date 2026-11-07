@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <!-- Latar Belakang Warna Kebiruan (Sesuai jika gambar sky_bg tiada) -->
+    <!-- Backgroud-->
     <View
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -30,7 +30,7 @@
             android:gravity="center"
             android:layout_marginBottom="32dp" />
 
-        <!-- Butang ke Calculator Page -->
+        <!-- Button to Calculator Page -->
         <Button
             android:id="@+id/btnGoCalculator"
             android:layout_width="match_parent"
@@ -42,7 +42,7 @@
             android:padding="12dp"
             android:layout_marginBottom="16dp" />
 
-        <!-- Butang ke About Page -->
+        <!-- Button to About Page -->
         <Button
             android:id="@+id/btnGoAbout"
             android:layout_width="match_parent"

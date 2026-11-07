@@ -3,9 +3,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <!-- Gambar Background -->
-
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -71,7 +68,7 @@
                 android:textColorLink="#000000"
                 android:textSize="14sp" />
 
-            <!-- BUTANG BACK (PENTING: ID android:id="@+id/btnBack") -->
+            <!-- BACK BUTTON (PENTING: ID android:id="@+id/btnBack") -->
             <Button
                 android:id="@+id/btnBack"
                 android:layout_width="match_parent"

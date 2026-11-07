@@ -21,7 +21,6 @@ public class AboutActivity extends AppCompatActivity {
         tvGithubUrl = findViewById(R.id.tvGithubUrl);
         btnBack = findViewById(R.id.btnBack);
 
-        // Menjadikan Pautan GitHub Boleh Diklik
         if (tvGithubUrl != null) {
             tvGithubUrl.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -34,7 +33,6 @@ public class AboutActivity extends AppCompatActivity {
             });
         }
 
-        // Menutup AboutActivity dan kembali ke skrin sebelumnya
         if (btnBack != null) {
             btnBack.setOnClickListener(new View.OnClickListener() {
                 @Override

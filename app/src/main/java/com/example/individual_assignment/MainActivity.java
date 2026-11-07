@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
         // Bind Butang Back to Main Menu
         btnBackToMain = findViewById(R.id.btnBackToMain);
 
-        // Setup Spinner Adapter secara manual
+        // Setup Spinner Adapter manually
         String[] ticketClasses = {"Economy Class (20 kg)", "Business Class (40 kg)"};
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_spinner_item, ticketClasses);
@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        // Listener untuk Butang BACK TO MAIN MENU
+        // Listener BACK TO MAIN MENU button
         if (btnBackToMain != null) {
             btnBackToMain.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -78,14 +78,14 @@ public class MainActivity extends AppCompatActivity {
         String weightStr = etBaggageWeight.getText().toString().trim();
         String rateStr = etRatePerKg.getText().toString().trim();
 
-        // Semakan 1: Jika input berat kosong (Instruction & Helpful Notice)
+        // 1: if weight input 0 (Instruction & Helpful Notice)
         if (weightStr.isEmpty()) {
             etBaggageWeight.setError("Please enter baggage weight!");
             Toast.makeText(this, "Notice: Baggage weight is required!", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        // Semakan 2: Jika input kadar kosong
+        // 2: if input rate 0
         if (rateStr.isEmpty()) {
             etRatePerKg.setError("Please enter excess rate per kg!");
             Toast.makeText(this, "Notice: Excess rate per kg is required!", Toast.LENGTH_SHORT).show();
@@ -98,9 +98,9 @@ public class MainActivity extends AppCompatActivity {
         int selectedPosition = spinnerTicketClass.getSelectedItemPosition();
         double freeWeightAllowance = (selectedPosition == 0) ? 20.0 : 40.0;
 
-        // Semakan 3: Logik Had & Mesej Notice/Within Limit
+        // 3: Logik Had & Mesej Notice/Within Limit
         if (baggageWeight <= freeWeightAllowance) {
-            // Jika dalam had yang dibenarkan (Within Limit)
+            // if (Within Limit)
             tvExcessWeight.setTextColor(Color.parseColor("#2E7D32")); // Warna hijau
             tvExcessWeight.setText(String.format(Locale.getDefault(), "Status: Within Limit (Max %.0f kg)", freeWeightAllowance));
             tvExcessCharge.setText("Excess Baggage Charge: RM 0.00");
@@ -108,11 +108,10 @@ public class MainActivity extends AppCompatActivity {
 
             Toast.makeText(this, "Notice: Baggage is within limit. No extra fee!", Toast.LENGTH_LONG).show();
         } else {
-            // Jika melebihi had (Excess Baggage)
+            // if (Excess Baggage)
             double excessWeight = baggageWeight - freeWeightAllowance;
             double excessCharge = excessWeight * ratePerKg;
 
-            // Perbaikan Formula Cukai (0.08 * excessCharge)
             double totalPayable = excessCharge + (0.08 * excessCharge);
 
             tvExcessWeight.setTextColor(Color.RED); // Warna merah
